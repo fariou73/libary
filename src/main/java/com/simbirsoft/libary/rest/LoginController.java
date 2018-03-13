@@ -18,4 +18,10 @@ public class LoginController {
         Authentication authenticate = authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authenticate);
     }
+
+    @GetMapping("api/authorized")
+    public boolean isAuthorized() {
+        return SecurityContextHolder.getContext().getAuthentication().getAuthorities()
+                .stream().anyMatch(auth -> "ROLE_USER".equals(auth.getAuthority()));
+    };
 }

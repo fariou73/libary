@@ -19,7 +19,7 @@ public class AttachmentController {
     @Autowired private AttachmentService service;
 
     @PostMapping
-    public Long upload(MultipartFile multipartFile) throws IOException {
+    public Long upload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
         return service.upload(multipartFile);
     }
 
